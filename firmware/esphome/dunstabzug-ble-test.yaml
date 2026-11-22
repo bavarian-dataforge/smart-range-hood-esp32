@@ -1,0 +1,217 @@
+# ---------------------------------------------------------------------------
+# Dunstabzugshaube – Testkonfiguration BLE-Funktaster
+#
+# Zweck:   BLE-Taster (z. B. Shelly BLU Button1, BTHome v2, unverschlüsselt)
+#          auf einem ESP32-Dev-Board OHNE Netzspannung auswerten.
+#          Lüfter und Licht sind hier nur Platzhalter (Template-Fan, Board-LED).
+# Stand:   21.11.2026, ungetestet auf Hardware
+#
+# Belegung:
+#   1x   -> Lüfter an bzw. nächste Stufe (bleibt auf Boost stehen)
+#   2x   -> Licht an/aus
+#   3x   -> Nachlauf (Stufe 1 für nachlauf_minuten, dann aus)
+#   lang -> Lüfter aus (bricht Nachlauf ab)
+#
+# Secrets: wifi_ssid, wifi_password, api_key, ota_password gehören in die
+#          secrets.yaml des ESPHome-Add-ons in Home Assistant, NICHT in
+#          Nextcloud oder ins Git-Repo.
+# ---------------------------------------------------------------------------
+
+substitutions:
+  device_name: dunstabzug-test
+  # MAC des Tasters: in der Shelly-App, auf dem Aufkleber oder im Log
+  # (logger auf DEBUG, Taster drücken, nach Service-Data FCD2 suchen)
+  ble_button_mac: "AA:BB:CC:DD:EE:FF"
+  nachlauf_minuten: "10"
+  led_pin: GPIO2            # Board-LED beim esp32dev, Platzhalter für Licht
+
+esphome:
+  name: ${device_name}
+  friendly_name: Dunstabzug Test
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf           # für WLAN + BLE gleichzeitig empfohlen (mehr RAM)
+
+logger:
+  level: DEBUG
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  reboot_timeout: 0s        # kein Neustart ohne WLAN, BLE-Taster soll weiter gehen
+  ap:
+    ssid: "${device_name} Fallback"
+
+captive_portal:
+
+api:
+  encryption:
+    key: !secret api_key
+  reboot_timeout: 0s        # kein Neustart ohne Home Assistant
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+web_server:
+  port: 80
+
+# ---------------------------------------------------------------------------
+# BLE-Empfang
+# ---------------------------------------------------------------------------
+esp32_ble_tracker:
+  scan_parameters:
+    active: false           # BTHome sendet von sich aus, kein aktiver Scan nötig
+    interval: 100ms         # Startwerte: hoher Anteil Scanzeit, damit kein
+    window: 80ms            # Tastendruck verloren geht. Wird WLAN instabil,
+                            # window verkleinern.
+  on_ble_service_data_advertise:
+    - mac_address: ${ble_button_mac}
+      service_uuid: "FCD2"  # BTHome
+      then:
+        - lambda: |-
+            // x = Service-Daten (std::vector<uint8_t>) ohne UUID
+            // Aufbau BTHome v2: [Geräteinfo] [Objekt-ID][Wert] [Objekt-ID][Wert] ...
+            if (x.size() < 2) return;
+
+            const uint8_t info = x[0];
+            if (info & 0x01) {
+              ESP_LOGW("ble_btn", "Paket verschlüsselt – Verschlüsselung am Taster abschalten");
+              return;
+            }
+            if ((info >> 5) != 2) {
+              ESP_LOGW("ble_btn", "Kein BTHome v2 (Info-Byte 0x%02X)", info);
+              return;
+            }
+
+            int pid = -1, battery = -1, event = -1;
+            size_t i = 1;
+            bool stop = false;
+            while (!stop && i < x.size()) {
+              const uint8_t obj = x[i++];
+              size_t len;
+              switch (obj) {
+                case 0x00:            // Paketnummer
+                case 0x01:            // Batterie %
+                case 0x3A: len = 1; break;  // Tastenereignis
+                case 0x02:            // Temperatur
+                case 0x03:            // Luftfeuchte
+                case 0x0C: len = 2; break;  // Spannung
+                default:
+                  ESP_LOGD("ble_btn", "Unbekannte Objekt-ID 0x%02X, Rest ignoriert", obj);
+                  stop = true;
+                  continue;
+              }
+              if (i + len > x.size()) break;
+              if (obj == 0x00) pid = x[i];
+              else if (obj == 0x01) battery = x[i];
+              else if (obj == 0x3A && event < 0) event = x[i];
+              i += len;
+            }
+
+            const float last_batt = id(ble_btn_battery).state;
+            if (battery >= 0 && (std::isnan(last_batt) || battery != (int) last_batt)) {
+              id(ble_btn_battery).publish_state(battery);
+            }
+
+            // Der Taster sendet jedes Ereignis mehrfach mit gleicher Paketnummer.
+            if (pid >= 0) {
+              if (pid == id(last_pid)) return;
+              id(last_pid) = pid;
+            }
+
+            switch (event) {
+              case 0x01: id(ble_btn_event).publish_state("einfach"); id(btn_single).execute(); break;
+              case 0x02: id(ble_btn_event).publish_state("doppelt"); id(btn_double).execute(); break;
+              case 0x03: id(ble_btn_event).publish_state("dreifach"); id(btn_triple).execute(); break;
+              case 0x04: id(ble_btn_event).publish_state("lang"); id(btn_long).execute(); break;
+              default: break;   // 0x00 = kein Ereignis (z. B. reines Batterie-Paket)
+            }
+
+globals:
+  - id: last_pid
+    type: int
+    restore_value: no
+    initial_value: "-1"
+
+# ---------------------------------------------------------------------------
+# Aktionen der Tasten
+# ---------------------------------------------------------------------------
+script:
+  - id: btn_single
+    then:
+      - script.stop: nachlauf
+      - lambda: |-
+          const int max_speed = 4;
+          int current = id(hood_fan).state ? id(hood_fan).speed : 0;
+          auto call = id(hood_fan).turn_on();
+          call.set_speed(std::min(current + 1, max_speed));
+          call.perform();
+
+  - id: btn_double
+    then:
+      - light.toggle: hood_light
+
+  - id: btn_triple
+    then:
+      - script.execute: nachlauf
+
+  - id: btn_long
+    then:
+      - script.stop: nachlauf
+      - fan.turn_off: hood_fan
+
+  - id: nachlauf
+    mode: restart
+    then:
+      - fan.turn_on:
+          id: hood_fan
+          speed: 1
+      - delay: ${nachlauf_minuten}min
+      - fan.turn_off: hood_fan
+
+# ---------------------------------------------------------------------------
+# Platzhalter für Lüfter und Licht
+# ---------------------------------------------------------------------------
+fan:
+  - platform: template
+    id: hood_fan
+    name: "Lüfter"
+    speed_count: 4          # 1-3 = Stufen, 4 = Boost
+    restore_mode: ALWAYS_OFF
+    on_speed_set:
+      - logger.log:
+          format: "Lüfter Stufe %d"
+          args: ["x"]
+    on_turn_off:
+      - logger.log: "Lüfter aus"
+
+output:
+  - platform: gpio
+    id: light_out
+    pin: ${led_pin}
+
+light:
+  - platform: binary
+    id: hood_light
+    name: "Licht"
+    output: light_out
+    restore_mode: ALWAYS_OFF
+
+# ---------------------------------------------------------------------------
+# Diagnose in Home Assistant
+# ---------------------------------------------------------------------------
+sensor:
+  - platform: template
+    id: ble_btn_battery
+    name: "BLE-Taster Batterie"
+    unit_of_measurement: "%"
+    device_class: battery
+    accuracy_decimals: 0
+
+text_sensor:
+  - platform: template
+    id: ble_btn_event
+    name: "BLE-Taster letztes Ereignis"

@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -14 170 134" width="1020" height="804" font-family="Helvetica, Arial, sans-serif">
+  <!-- Maßstab: 1 Einheit = 1 mm, Platine 160 x 100 mm (Europakarte) -->
+  <title>Dunstabzug Steuerplatine – Layout-Konzept (Draufsicht, 1 Einheit = 1 mm)</title>
+  <rect x="-5" y="-14" width="170" height="134" fill="#ffffff"/>
+
+  <!-- Überschrift -->
+  <text x="0" y="-7" font-size="4.2" font-weight="bold" fill="#222">Steuerplatine Dunstabzug – Layout-Konzept (Draufsicht, 160 × 100 mm)</text>
+  <text x="0" y="-2.5" font-size="2.6" fill="#555">Konzept, kein freigegebenes Layout. Netzteil nur durch Elektrofachkraft auslegen und prüfen.</text>
+
+  <!-- Platine -->
+  <rect x="0" y="0" width="160" height="100" rx="2" fill="#f4f6f4" stroke="#333" stroke-width="0.6"/>
+
+  <!-- Zonen -->
+  <rect x="0.5" y="0.5" width="94" height="99" fill="#fde8e6"/>
+  <rect x="105.5" y="0.5" width="54" height="99" fill="#e5f3e7"/>
+  <text x="0" y="104.5" font-size="3.2" font-weight="bold" fill="#b3261e">← 230 V AC (Netzzone)</text>
+  <text x="160" y="104.5" font-size="3.2" font-weight="bold" fill="#1e6b2e" text-anchor="end">Kleinspannung (SELV) →</text>
+
+  <!-- Trennbarriere -->
+  <rect x="94.5" y="0.5" width="11" height="99" fill="#fff8d6"/>
+  <rect x="99" y="2" width="2" height="96" rx="1" fill="#444"/>
+  <text x="100" y="108" font-size="2.6" text-anchor="middle" fill="#444">Isolationsbarriere ≥ 8 mm Kriechstrecke, Frässchlitz 2 mm</text>
+  <line x1="100" y1="100.5" x2="100" y2="105" stroke="#444" stroke-width="0.3"/>
+
+  <!-- Befestigungslöcher -->
+  <g fill="#fff" stroke="#333" stroke-width="0.4">
+    <circle cx="4" cy="4" r="1.6"/><circle cx="156" cy="4" r="1.6"/>
+    <circle cx="4" cy="96" r="1.6"/><circle cx="156" cy="96" r="1.6"/>
+  </g>
+
+  <!-- ===== Netzzone ===== -->
+  <!-- J1 Netz -->
+  <rect x="6" y="8" width="9" height="16" fill="#fff" stroke="#b3261e" stroke-width="0.5"/>
+  <text x="10.5" y="13" font-size="2.4" text-anchor="middle">L</text>
+  <text x="10.5" y="20.5" font-size="2.4" text-anchor="middle">N</text>
+  <text x="6" y="6.5" font-size="2.6" font-weight="bold">J1 Netz</text>
+
+  <!-- F1 -->
+  <rect x="20" y="8" width="24" height="8" fill="#fff" stroke="#b3261e" stroke-width="0.5"/>
+  <text x="32" y="13.2" font-size="2.4" text-anchor="middle">F1 T 2,5 A (5×20)</text>
+
+  <!-- RV1 + X2 -->
+  <rect x="20" y="19" width="10" height="5" fill="#fff" stroke="#b3261e" stroke-width="0.5"/>
+  <text x="25" y="22.5" font-size="2.2" text-anchor="middle">RV1</text>
+  <rect x="33" y="19" width="11" height="5" fill="#fff" stroke="#b3261e" stroke-width="0.5"/>
+  <text x="38.5" y="22.5" font-size="2.2" text-anchor="middle">CX X2</text>
+
+  <!-- Netzschiene L nach Sicherung -->
+  <path d="M15 12 H20 M44 12 H62 V68" fill="none" stroke="#b3261e" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="63.5" y="40" font-size="2.2" fill="#b3261e">L (gesichert)</text>
+
+  <!-- Relais K1–K4: Kontakte links (Netz), Spule rechts (SELV) -->
+  <g>
+    <rect x="80" y="8" width="29" height="12.7" fill="#fff" stroke="#333" stroke-width="0.5"/>
+    <rect x="80" y="26" width="29" height="12.7" fill="#fff" stroke="#333" stroke-width="0.5"/>
+    <rect x="80" y="44" width="29" height="12.7" fill="#fff" stroke="#333" stroke-width="0.5"/>
+    <rect x="80" y="62" width="29" height="12.7" fill="#fff" stroke="#333" stroke-width="0.5"/>
+    <text x="86" y="15.5" font-size="2.6" font-weight="bold">K1 Boost</text>
+    <text x="86" y="33.5" font-size="2.6" font-weight="bold">K2 Stufe 1</text>
+    <text x="86" y="51.5" font-size="2.6" font-weight="bold">K3 Stufe 2</text>
+    <text x="86" y="69.5" font-size="2.6" font-weight="bold">K4 Stufe 3</text>
+    <!-- Pins: Kontakte bei x 82, Spule bei x 107 -->
+    <g fill="#b3261e">
+      <circle cx="82.5" cy="11" r="0.9"/><circle cx="82.5" cy="17.5" r="0.9"/>
+      <circle cx="82.5" cy="29" r="0.9"/><circle cx="82.5" cy="35.5" r="0.9"/>
+      <circle cx="82.5" cy="47" r="0.9"/><circle cx="82.5" cy="53.5" r="0.9"/>
+      <circle cx="82.5" cy="65" r="0.9"/><circle cx="82.5" cy="71.5" r="0.9"/>
+    </g>
+    <g fill="#1e6b2e">
+      <circle cx="106.5" cy="11" r="0.9"/><circle cx="106.5" cy="17.5" r="0.9"/>
+      <circle cx="106.5" cy="29" r="0.9"/><circle cx="106.5" cy="35.5" r="0.9"/>
+      <circle cx="106.5" cy="47" r="0.9"/><circle cx="106.5" cy="53.5" r="0.9"/>
+      <circle cx="106.5" cy="65" r="0.9"/><circle cx="106.5" cy="71.5" r="0.9"/>
+    </g>
+  </g>
+  <!-- L-Verteilung zu den Relaiskontakten -->
+  <path d="M62 11 H82.5 M62 29 H82.5 M62 47 H82.5 M62 65 H82.5" fill="none" stroke="#b3261e" stroke-width="1.2"/>
+
+  <!-- J4 Vorschaltkondensatoren (extern, im Gehäuse) -->
+  <rect x="6" y="32" width="9" height="34" fill="#fff" stroke="#b3261e" stroke-width="0.5"/>
+  <text x="6" y="30.5" font-size="2.6" font-weight="bold">J4 CM1–CM3</text>
+  <g font-size="2" text-anchor="middle">
+    <text x="10.5" y="37">CM1a</text><text x="10.5" y="42">CM1b</text>
+    <text x="10.5" y="48">CM2a</text><text x="10.5" y="53">CM2b</text>
+    <text x="10.5" y="59">CM3a</text><text x="10.5" y="64">CM3b</text>
+  </g>
+  <!-- Entladewiderstände -->
+  <rect x="20" y="34" width="14" height="30" fill="#fff" stroke="#b3261e" stroke-width="0.5" stroke-dasharray="1 0.6"/>
+  <text x="27" y="47" font-size="2.2" text-anchor="middle">R-Entl.</text>
+  <text x="27" y="50" font-size="2.2" text-anchor="middle">2×470 kΩ</text>
+  <text x="27" y="53" font-size="2.2" text-anchor="middle">je C</text>
+
+  <!-- Motorausgang -->
+  <rect x="6" y="76" width="9" height="16" fill="#fff" stroke="#b3261e" stroke-width="0.5"/>
+  <text x="10.5" y="81" font-size="2.2" text-anchor="middle">M-L</text>
+  <text x="10.5" y="88.5" font-size="2.2" text-anchor="middle">M-N</text>
+  <text x="17" y="80" font-size="2.6" font-weight="bold">J3 Motor</text>
+  <text x="17" y="84" font-size="2.1" fill="#555">Sammelschiene M-L</text>
+  <text x="17" y="87" font-size="2.1" fill="#555">von K1–K4 (über C)</text>
+
+  <!-- Snubber -->
+  <rect x="38" y="78" width="16" height="7" fill="#fff" stroke="#b3261e" stroke-width="0.5" stroke-dasharray="1 0.6"/>
+  <text x="46" y="82.5" font-size="2.2" text-anchor="middle">RC-Snubber</text>
+  <text x="46" y="89.5" font-size="2" text-anchor="middle" fill="#555">optional</text>
+
+  <!-- N-Schiene -->
+  <path d="M15 20.5 H17 V88.5 H15" fill="none" stroke="#3a5bbf" stroke-width="1.2"/>
+  <text x="17.8" y="72" font-size="2" fill="#3a5bbf">N</text>
+
+  <!-- PE Hinweis -->
+  <text x="20" y="28.5" font-size="2.1" fill="#7a5a00">PE: Wago im Gehäuse</text>
+
+  <!-- F2 Netzteilzweig -->
+  <rect x="64" y="70" width="14" height="6" fill="#fff" stroke="#b3261e" stroke-width="0.5"/>
+  <text x="71" y="74" font-size="2.2" text-anchor="middle">F2 T 1 A</text>
+  <path d="M62 68 V73 H64 M71 76 V78" fill="none" stroke="#b3261e" stroke-width="0.8"/>
+
+  <!-- PS1 Netzteil, über Barriere -->
+  <rect x="62" y="78" width="52.4" height="17" fill="#fff" stroke="#333" stroke-width="0.6"/>
+  <text x="88" y="86" font-size="2.6" font-weight="bold" text-anchor="middle">PS1 AC/DC 12 V, 20 W</text>
+  <text x="88" y="90" font-size="2.1" text-anchor="middle" fill="#555">z. B. IRM-20-12, eigene Isolation</text>
+  <circle cx="65" cy="81" r="0.9" fill="#b3261e"/><circle cx="65" cy="92" r="0.9" fill="#b3261e"/>
+  <circle cx="111.5" cy="81" r="0.9" fill="#1e6b2e"/><circle cx="111.5" cy="92" r="0.9" fill="#1e6b2e"/>
+
+  <!-- ===== SELV-Zone ===== -->
+  <!-- ULN2003 -->
+  <rect x="112" y="24" width="7" height="22" fill="#fff" stroke="#1e6b2e" stroke-width="0.5"/>
+  <text x="115.5" y="35" font-size="2.2" text-anchor="middle" transform="rotate(-90 115.5 35)">U1 ULN2003A</text>
+  <path d="M106.5 11 H110 V26 H112 M106.5 29 H110 M106.5 47 H110 V44 H112 M106.5 65 H110 V46" fill="none" stroke="#1e6b2e" stroke-width="0.4"/>
+
+  <!-- ESP32 DevKit -->
+  <rect x="125" y="8" width="28" height="55" rx="1" fill="#fff" stroke="#1e6b2e" stroke-width="0.6"/>
+  <rect x="131" y="8" width="16" height="8" fill="#ddd"/>
+  <text x="139" y="13" font-size="2" text-anchor="middle">u.FL</text>
+  <text x="139" y="34" font-size="2.8" font-weight="bold" text-anchor="middle">ESP32</text>
+  <text x="139" y="38" font-size="2.2" text-anchor="middle">DevKitC-32U</text>
+  <text x="139" y="42" font-size="2" text-anchor="middle" fill="#555">gesteckt (Buchsenleisten)</text>
+  <text x="139" y="6" font-size="2.1" text-anchor="middle" fill="#555">Antenne zeigt zum Platinenrand</text>
+  <path d="M119 30 H125" stroke="#1e6b2e" stroke-width="0.4"/>
+
+  <!-- Buck -->
+  <rect x="118" y="67" width="14" height="9" fill="#fff" stroke="#1e6b2e" stroke-width="0.5"/>
+  <text x="125" y="72.5" font-size="2.2" text-anchor="middle">U2 12→5 V</text>
+  <path d="M111.5 81 H116 V72 H118 M132 71 H137 V63" fill="none" stroke="#1e6b2e" stroke-width="0.6"/>
+
+  <!-- MOSFET LED -->
+  <rect x="136" y="68" width="9" height="7" fill="#fff" stroke="#1e6b2e" stroke-width="0.5"/>
+  <text x="140.5" y="72.5" font-size="2.2" text-anchor="middle">Q1</text>
+  <text x="140.5" y="66.5" font-size="2" text-anchor="middle" fill="#555">LED-PWM</text>
+
+  <!-- J5 LED Ausgang -->
+  <rect x="148" y="78" width="9" height="11" fill="#fff" stroke="#1e6b2e" stroke-width="0.5"/>
+  <text x="152.5" y="82.5" font-size="2" text-anchor="middle">+12</text>
+  <text x="152.5" y="87" font-size="2" text-anchor="middle">LED−</text>
+  <text x="145" y="92.5" font-size="2.4" font-weight="bold">J5 Licht</text>
+  <path d="M145 72 H150 V78" fill="none" stroke="#1e6b2e" stroke-width="0.6"/>
+
+  <!-- J6 Sensor / Status -->
+  <rect x="119" y="50" width="5" height="9" fill="#fff" stroke="#1e6b2e" stroke-width="0.5"/>
+  <text x="121.5" y="62" font-size="2" text-anchor="middle">J6</text>
+  <text x="121.5" y="65" font-size="1.8" text-anchor="middle" fill="#555">Temp.</text>
+
+  <!-- Legende -->
+  <g font-size="2.4">
+    <rect x="0" y="111" width="4" height="3" fill="#b3261e"/><text x="5.5" y="113.6">Netzspannung führend</text>
+    <rect x="38" y="111" width="4" height="3" fill="#3a5bbf"/><text x="43.5" y="113.6">Neutralleiter</text>
+    <rect x="68" y="111" width="4" height="3" fill="#1e6b2e"/><text x="73.5" y="113.6">Kleinspannung</text>
+    <rect x="100" y="111" width="4" height="3" fill="none" stroke="#333" stroke-width="0.4" stroke-dasharray="1 0.6"/><text x="105.5" y="113.6">optional</text>
+    <text x="125" y="113.6" fill="#555">1 Einheit = 1 mm</text>
+  </g>
+  <text x="0" y="118" font-size="2.3" fill="#555">Lastpfad: K1-Ausgang → M-L direkt · K2/K3/K4-Ausgang → CM1a/CM2a/CM3a → Kondensator → CM1b/CM2b/CM3b → M-L → J3 → Motor (wie bisher am Schalter)</text>
+</svg>

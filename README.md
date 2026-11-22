@@ -27,13 +27,28 @@ The project combines embedded firmware, PCB design with KiCad, local operation a
 | Rated speed | 2100 rpm |
 | Run capacitor | 6.5 µF / 450 V AC |
 | Available PCB space | 140 × 180 mm |
-| Controller | ESP32 (planned) |
+| EMI filter | Schurter FMW2-52-6/0.5 (5500.2044), 6 A — kept in the supply line |
+| Lighting | 12 V G4 spots (to be replaced by G4 LED) |
+| Controller | ESP32-WROOM-32U DevKitC V4 |
 
 The motor has been successfully tested at full speed.
 
-**Important:** The motor speed-control method has not yet been validated. Compatibility with phase-angle control or other regulation methods must be established before implementation.
+The motor is a single-phase permanent-split capacitor (PSC) motor: main winding, auxiliary winding with a 6.5 µF run capacitor, thermal cut-out. It has no speed taps.
 
-The lighting voltage and driver requirements also remain to be verified.
+## Speed Control
+
+**Capacitive step speed control** (no phase-angle control — PSC motors hum and overheat on triac dimmers):
+
+| Level | Relay | Series capacitor | Note |
+|---|---|---|---|
+| 3 (full) | K1 | none, direct | identical to the motor on mains |
+| 2 | K4 | ~8 µF / 450 V AC | start value, tune in test |
+| 1 | K3 | ~5 µF / 450 V AC | start value, tune in test |
+| (reserve) | K2 | ~3 µF | optional 4th level, may be too weak |
+
+A series capacitor acts as a nearly loss-free reactance (X = 1/(2πfC)) and lowers the motor voltage. Relays are interlocked in firmware; every start from standstill runs 2 s at full speed (kick-start) before dropping to the target level.
+
+The capacitor values are validated on the bench (series capacitor, clamp meter, motor temperature after 15 min) before the PCB is ordered.
 
 ## Planned Architecture
 
@@ -46,44 +61,60 @@ Local User Interface
          |        Home Assistant
          |
          v
-Isolated Control Interface
+ULN2003A relay driver          AO3400A MOSFET
+         |                            |
+   4 relays (Finder 40.31)      12 V LED lighting (PWM dimming)
          |
-         v
-Certified / Suitable Power Stage
-         |
-         +---- Fan Motor
-         |
-         +---- Lighting
+   series capacitors  ---->  Fan motor (PSC, 230 V)
+
+Mains: fuse T 2.5 A, varistor, X2 capacitor, Mean Well IRM-20-12 (isolated 12 V)
+Fallback control: Shelly BLU button (BLE, works without Wi-Fi)
 ```
 
-## Repository Structure (Planned)
+## Repository Structure
 
 ```text
 smart-range-hood-esp32/
 ├── README.md
 ├── docs/
-│   ├── requirements.md
-│   ├── hardware.md
-│   └── safety.md
+│   ├── konzept.md            # full concept, checklists, test plan (German)
+│   └── images/               # nameplates, filter, hood terminal space
 ├── hardware/
-│   └── kicad/
-├── firmware/
-│   └── esp32/
-└── tests/
+│   ├── kicad/                # Python generators + KiCad project
+│   │   ├── generate_schematic.py
+│   │   ├── generate_pcb.py   # placement, net classes, design rules
+│   │   ├── route_pcb.py      # own router (8 mm mains/SELV, 3 mm mains/mains)
+│   │   ├── make_3d_terminals.py
+│   │   └── dunstabzug-steuerplatine/
+│   ├── gerber/               # fabrication output
+│   └── einkaufsliste-reichelt.md   # BOM with Reichelt links (German)
+└── firmware/
+    └── esphome/              # ESPHome test configurations
 ```
 
 ## Development Roadmap
 
 - [x] Identify motor specifications
 - [x] Verify motor operation at full speed
-- [ ] Confirm suitable motor speed-control method
-- [ ] Identify lighting supply and control requirements
-- [ ] Define ESP32 hardware architecture
-- [ ] Create KiCad schematic
-- [ ] Design PCB
-- [ ] Implement ESP32 firmware
+- [x] Confirm suitable motor speed-control method
+- [x] Identify lighting supply and control requirements
+- [x] Define ESP32 hardware architecture
+- [x] Create KiCad schematic
+- [x] Design PCB (160 × 100 mm, 2 layers, THT, DRC clean)
+- [ ] Bench-test series capacitor values
+- [ ] Electrical review of the mains side, then order PCB
+- [ ] Implement ESP32 firmware (ESPHome test configs exist)
 - [ ] Integrate MQTT and Home Assistant
 - [ ] Perform electrical safety and functional testing
+
+## Build the PCB from source
+
+```bash
+KP=/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3   # KiCad's Python (macOS)
+cd hardware/kicad
+$KP generate_schematic.py
+$KP generate_pcb.py && python3 route_pcb.py && $KP generate_pcb.py --apply-routes
+```
 
 ## Electrical Safety
 
@@ -95,9 +126,9 @@ Motor control must not be implemented using an unverified dimmer or PWM circuit.
 
 ## Project Status
 
-**Early development — requirements and hardware investigation.**
+**PCB designed, awaiting electrical review and bench test.**
 
-No finished PCB, validated motor regulator or production-ready firmware is available yet.
+Schematic (ERC clean), routed PCB (DRC clean, 8 mm clearance/creepage mains ↔ SELV with milled slot, 3 mm mains ↔ mains) and Gerber files exist. Not yet built or tested — do not use as-is.
 
 ## License
 

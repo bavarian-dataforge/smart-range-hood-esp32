@@ -1,0 +1,50 @@
+** Drc report for dunstabzug-steuerplatine.kicad_pcb **
+** Created on 2026-11-22T01:03:27 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 8 DRC violations **
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(149.0000 mm, 52.0000 mm): Rectangle on Edge.Cuts
+    @(131.3800 mm, 101.9300 mm): Segment of K4 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(149.0000 mm, 52.0000 mm): Rectangle on Edge.Cuts
+    @(160.6200 mm, 114.5700 mm): Segment of K4 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(149.0000 mm, 52.0000 mm): Rectangle on Edge.Cuts
+    @(131.3800 mm, 53.9300 mm): Segment of K1 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(149.0000 mm, 52.0000 mm): Rectangle on Edge.Cuts
+    @(160.6200 mm, 66.5700 mm): Segment of K1 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(149.0000 mm, 52.0000 mm): Rectangle on Edge.Cuts
+    @(131.3800 mm, 69.9300 mm): Segment of K2 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(149.0000 mm, 52.0000 mm): Rectangle on Edge.Cuts
+    @(160.6200 mm, 82.5700 mm): Segment of K2 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(149.0000 mm, 52.0000 mm): Rectangle on Edge.Cuts
+    @(131.3800 mm, 85.9300 mm): Segment of K3 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(149.0000 mm, 52.0000 mm): Rectangle on Edge.Cuts
+    @(160.6200 mm, 98.5700 mm): Segment of K3 on F.Silkscreen
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

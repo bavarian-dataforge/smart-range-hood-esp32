@@ -1,0 +1,30 @@
+(version 1)
+
+# Verstaerkte Isolierung zwischen Netz (230 V) und Kleinspannung (SELV).
+# Kueche = verschmutzte Umgebung, daher grosszuegig.
+(rule "Netz zu SELV Luftstrecke"
+  (condition "A.NetClass == 'Netz' && B.NetClass == 'SELV'")
+  (constraint clearance (min 8mm)))
+
+(rule "Netz zu SELV Kriechstrecke"
+  (condition "A.NetClass == 'Netz' && B.NetClass == 'SELV'")
+  (constraint creepage (min 8mm)))
+
+# Netz untereinander (L, N, Motor, Kondensatoren): 3 mm Luft- und Kriechstrecke
+(rule "Netz zu Netz Kriechstrecke"
+  (condition "A.NetClass == 'Netz' && B.NetClass == 'Netz'")
+  (constraint creepage (min 3mm)))
+
+# Netz: Abstand zu Platinenrand und Befestigungsloechern (Schraube am Gehaeuse)
+(rule "Netz Randabstand"
+  (condition "A.NetClass == 'Netz'")
+  (constraint edge_clearance (min 2mm)))
+
+(rule "Netz Lochabstand"
+  (condition "A.NetClass == 'Netz' && B.Type == 'Footprint' && B.Reference == 'H*'")
+  (constraint hole_clearance (min 3.5mm)))
+
+# Netzleiterbahnen breit genug fuer 2-3 A
+(rule "Netz Leiterbahnbreite"
+  (condition "A.NetClass == 'Netz'")
+  (constraint track_width (min 2mm) (opt 2.5mm)))

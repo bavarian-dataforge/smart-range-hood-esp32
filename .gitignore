@@ -1,0 +1,16 @@
+# ESPHome / Home Assistant secrets – never commit
+secrets.yaml
+.esphome/
+
+# KiCad local/backup files
+*.kicad_prl
+*.lck
+*-backups/
+_autosave-*
+fp-info-cache
+~*.kicad_*
+
+# Python / OS
+__pycache__/
+*.pyc
+.DS_Store
