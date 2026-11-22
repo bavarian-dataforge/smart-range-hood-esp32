@@ -42,13 +42,13 @@ The motor is a single-phase permanent-split capacitor (PSC) motor: main winding,
 | Level | Relay | Series capacitor | Note |
 |---|---|---|---|
 | 3 (full) | K1 | none, direct | identical to the motor on mains |
-| 2 | K4 | ~8 µF / 450 V AC | start value, tune in test |
-| 1 | K3 | ~5 µF / 450 V AC | start value, tune in test |
-| (reserve) | K2 | ~3 µF | optional 4th level, may be too weak |
+| 2 | K4 | ~15–20 µF / 450 V AC | estimate, tune in bench test |
+| 1 | K3 | ~10–12 µF / 450 V AC | estimate, tune in bench test |
+| (reserve) | K2 | — | optional 4th level |
 
 A series capacitor acts as a nearly loss-free reactance (X = 1/(2πfC)) and lowers the motor voltage. Relays are interlocked in firmware; every start from standstill runs 2 s at full speed (kick-start) before dropping to the target level.
 
-The capacitor values are validated on the bench (series capacitor, clamp meter, motor temperature after 15 min) before the PCB is ordered.
+Estimate: motor ≈ 200 Ω (230 V / 1.15 A, nearly resistive with its run capacitor); motor voltage = 230 V · R / √(R² + X_C²). The values are validated on the bench before the PCB is ordered — see [test setup](docs/images/testaufbau-kondensatoren.png).
 
 ## Planned Architecture
 
