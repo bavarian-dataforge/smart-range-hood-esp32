@@ -572,6 +572,7 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 - [x] Netzabstand auf 3 mm erhöht, Klemmen 7,5 mm, neu verlegt, Gerber neu (22.11.2026)
 - [x] Einkaufsliste Reichelt: [`hardware/einkaufsliste-reichelt.md`](hardware/einkaufsliste-reichelt.md); Sicherungshalter dafür auf Schurter OGN umgestellt (22.11.2026)
 - [x] ESP32-DevKitC-32U (2 Stück mit Antenne) bestellt
+- [ ] **Vor der Bestellung besprechen:** Q1 (AO3400A, SOT-23) ist das einzige SMD-Teil. Entweder selbst löten (Lötkolben mit feiner Spitze oder Heißluft, Flussmittel) oder Teilbestückung beim Hersteller (JLCPCB, LCSC C20917; dafür BOM + Bestückungsdatei erzeugen)
 - [ ] Platine bestellen (nach Prüfung durch die EFKffT und Gegencheck durch den Elektriker)
 - [ ] DevKitC-Reihenabstand am echten Board nachmessen
 - [ ] ESPHome-Konfiguration mit Zustandslogik, auf Dev-Board ohne Netzspannung testen
