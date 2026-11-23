@@ -287,7 +287,7 @@ Sicherungswerte sind Richtwerte und werden von der Elektrofachkraft festgelegt. 
 | U1 | ULN2003A | treibt die 12-V-Relaisspulen, Freilaufdioden integriert |
 | Q1 | Logic-Level-MOSFET (z. B. AO3400 oder IRLZ44N), 100 Ω Gate, 10 kΩ Pull-down | PWM für LED-Licht |
 | J5 | Lichtausgang +12 V / LED− | zweiadrige Leitung zu den G4-LEDs |
-| J6 | Sensoranschluss (z. B. DS18B20) | optional, Temperatur im Gehäuse |
+| J6 | Sensoranschluss DS18B20 (Reichelt DS 18B20) | Temperatur im Aufnahmeraum, Warnung ab 60 °C in Home Assistant (Firmware ergänzt 23.11.2026) |
 | ESP32 | DevKitC-32U auf Buchsenleisten (J7, J8) | IO16–19 → U1 (K1–K4), IO25 → Q1 (Licht-PWM), IO4 → 1-Wire |
 
 Leistungsbudget PS1: Relais (nur eins gleichzeitig an, ca. 0,4 W) + ESP32 (ca. 1 W) + LED-Licht. Bei mehr als ca. 15 W Licht ein stärkeres Netzteil wählen.
@@ -470,6 +470,15 @@ Die Haube enthält **230 V AC** und einen **260-W-Induktionsmotor**. Maßgeblich
 
 **Wer prüft:** Eine Elektrofachkraft für festgelegte Tätigkeiten prüft Layout und Aufbau. Ein Elektriker macht den Gegencheck und die Prüfung nach DIN VDE 0701-0702 vor der Inbetriebnahme. Der Selbstbau einer 230-V-Baugruppe geht über typische festgelegte Tätigkeiten hinaus, deshalb ist der Gegencheck durch den Elektriker fest eingeplant.
 
+### Kaminofen und Abluftbetrieb (Stand 23.11.2026)
+
+Im Haus steht ein Kaminofen mit Außenluftzufuhr. Die Haube arbeitet im Abluftbetrieb und erzeugt Unterdruck im Raum.
+
+- **Regel (Feuerungsverordnung § 4 Abs. 2, je Bundesland leicht unterschiedlich):** Raumluftabhängige Feuerstätten dürfen durch Dunstabzugshauben nicht beeinträchtigt werden. Zulässig ist der gemeinsame Betrieb nur, wenn z. B. eine Sicherheitseinrichtung den gleichzeitigen Betrieb verhindert, die Abgasführung überwacht wird oder anlagentechnisch kein gefährlicher Unterdruck entstehen kann. Als Richtwert gelten max. 4 Pa Unterdruck, bei zugelassenen raumluftunabhängigen Öfen bis 8 Pa.
+- **Außenluftanschluss ≠ raumluftunabhängig:** Ein Ofen gilt nur als raumluftunabhängig, wenn er dafür geprüft und zugelassen ist (DIBt-Zulassung, Dichtheitsprüfung). Ein Ofen mit Verbrennungsluftstutzen ohne diese Zulassung zählt rechtlich als raumluftabhängig.
+- **Zu klären:** Typenschild/Zulassung des Ofens und Feuerstättenbescheid prüfen bzw. den Bezirksschornsteinfeger fragen, ob und mit welcher Auflage (Fensterkontaktschalter, Unterdruckwächter) die Abluft-Haube abgenommen wurde.
+- **Folge für die Steuerung:** Eine ESP-Logik ist **keine** zugelassene Sicherheitseinrichtung. Falls eine Sicherung nötig ist oder schon existiert (z. B. Fensterkontaktschalter), bleibt sie als zugelassenes Gerät in der Netzzuleitung **vor** der Steuerplatine. Zusätzlich darf die Firmware informieren, z. B. eine Warnung, wenn Ofen und Haube gleichzeitig laufen.
+
 ### Prüfliste Netzseite (Stand 22.11.2026)
 
 Normwerte aus EN 60335-1 bzw. IEC 60664-1 sind aus dem Gedächtnis eingetragen und **in der Norm nachzuschlagen**. Annahme: Verschmutzungsgrad 2 (geschlossenes Gehäuse außerhalb der Fettzone), Überspannungskategorie II, Isolierstoffgruppe IIIa (FR-4).
@@ -561,7 +570,8 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 - [ ] Kabelweg Gehäuse → Motor und Licht, vorhandene Steckverbinder, benötigte Länge
 - [ ] Leitungen im Anschlussraum durchmessen (Abschnitt 5a, Tabelle „Vorhandene Leitungen“)
 - [x] Spot-Leitung: 12 V DC, getestet (23.11.2026)
-- [ ] Lange Beleuchtungsleitung: AC oder DC, Trafo/Treiber in der Leuchte? (zuletzt klären)
+- [ ] Lange Beleuchtungsleitung: AC oder DC
+- [ ] Kaminofen: raumluftunabhängig zugelassen (DIBt)? Auflage für die Abluft-Haube beim Bezirksschornsteinfeger klären, Trafo/Treiber in der Leuchte? (zuletzt klären)
 
 ## 11. Aufgabenliste
 

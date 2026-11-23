@@ -19,7 +19,7 @@
 #   - Nach Neustart alles aus
 #
 # Der 230-V-Teil wird von einer Elektrofachkraft aufgebaut und geprüft.
-# Stand: 21.11.2026, ungetestet auf Hardware
+# Stand: 23.11.2026 (Temperatur J6 + WLAN-Signal ergänzt), ungetestet auf Hardware
 # ---------------------------------------------------------------------------
 
 substitutions:
@@ -29,6 +29,8 @@ substitutions:
   pin_k2_stufe1: GPIO17
   pin_k3_stufe2: GPIO18
   pin_k4_stufe3: GPIO19
+  pin_onewire: GPIO4        # J6, DS18B20 (Pull-up R10 4,7 kΩ auf der Platine)
+  temp_warnung: "60"        # °C im Aufnahmeraum, ab hier Warnung in HA
   # Viele Relaismodule schalten bei LOW -> "true". Bei HIGH-aktiven Modulen "false".
   relais_invertiert: "true"
   umschaltpause: 300ms      # alle Relais aus, bevor ein anderes einschaltet
@@ -195,6 +197,32 @@ fan:
 # ---------------------------------------------------------------------------
 # Diagnose
 # ---------------------------------------------------------------------------
+one_wire:
+  - platform: gpio
+    pin: ${pin_onewire}
+
+sensor:
+  - platform: dallas_temp
+    id: temp_raum
+    name: "Temperatur Aufnahmeraum"
+    update_interval: 30s
+  - platform: wifi_signal     # Empfang im Edelstahlraum: > -70 dBm gut, < -80 dBm Antenne nach außen
+    name: "WLAN Signal"
+    update_interval: 60s
+
+binary_sensor:
+  - platform: template
+    name: "Übertemperatur Aufnahmeraum"
+    device_class: heat
+    # 5 K Hysterese, damit die Meldung nicht flattert
+    lambda: |-
+      static bool warm = false;
+      float t = id(temp_raum).state;
+      if (isnan(t)) return {};
+      if (t >= ${temp_warnung}) warm = true;
+      else if (t <= ${temp_warnung} - 5) warm = false;
+      return warm;
+
 text_sensor:
   - platform: template
     name: "Motor Relais"
