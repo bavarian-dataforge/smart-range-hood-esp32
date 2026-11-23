@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" font-family="Helvetica, Arial, sans-serif" font-size="15">
+  <rect width="1200" height="1200" fill="#ffffff"/>
+  <text x="30" y="40" font-size="24" font-weight="bold">Einbau in den Aufnahmeraum der alten Steuerung – Draufsicht (Maßstab 3 px = 1 mm)</text>
+  <text x="30" y="64" fill="#555">Maße nach Skizze vom 23.11.2026: 145 mm breit, 220 mm tief, Auflageleisten 10 mm, Laschen 45 mm über Leiste.</text>
+
+  <!-- Raum: 145 x 220 mm -> 435 x 660 px, Ursprung (200,120) -->
+  <rect x="170" y="120" width="30" height="660" fill="#c9ced6"/>
+  <rect x="635" y="120" width="30" height="660" fill="#c9ced6"/>
+  <text x="185" y="810" text-anchor="middle" font-size="12" fill="#555">Wand</text>
+  <text x="650" y="810" text-anchor="middle" font-size="12" fill="#555">Wand</text>
+  <rect x="200" y="120" width="435" height="660" fill="#f7f7f7" stroke="#333" stroke-width="2"/>
+  <!-- Leisten 10 mm -->
+  <rect x="200" y="120" width="30" height="660" fill="#dde1e7" stroke="#999"/>
+  <rect x="605" y="120" width="30" height="660" fill="#dde1e7" stroke="#999"/>
+  <!-- Luftstrom außen -->
+  <g fill="#2a7fd4" font-size="13">
+    <text x="60" y="420">Luftstrom</text><text x="60" y="438">(außerhalb)</text>
+    <text x="690" y="420">Luftstrom</text><text x="690" y="438">(außerhalb)</text>
+  </g>
+  <path d="M120 600 L120 300" stroke="#2a7fd4" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M720 600 L720 300" stroke="#2a7fd4" stroke-width="3" marker-end="url(#a)"/>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2a7fd4"/></marker></defs>
+
+  <!-- Trägerplatte isolierend 143 x 215 -->
+  <rect x="203" y="128" width="429" height="645" fill="none" stroke="#7a2a9a" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="418" y="150" text-anchor="middle" fill="#7a2a9a" font-size="13">Trägerplatte isolierend (z. B. 3 mm Polycarbonat/FR4) liegt auf den Leisten</text>
+
+  <!-- Platine 100 x 160 mm -> 300 x 480 px -->
+  <rect x="245" y="285" width="300" height="480" fill="#2f7d46" fill-opacity="0.85" stroke="#1b4d2b" stroke-width="2"/>
+  <line x1="245" y1="525" x2="545" y2="525" stroke="#ffffff" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="395" y="415" text-anchor="middle" fill="#fff" font-weight="bold">230-V-Seite</text>
+  <text x="395" y="435" text-anchor="middle" fill="#fff" font-size="13">Sicherungen, Netzteil, Relais</text>
+  <text x="395" y="635" text-anchor="middle" fill="#fff" font-weight="bold">Kleinspannung</text>
+  <text x="395" y="655" text-anchor="middle" fill="#fff" font-size="13">ESP32, ULN2003, Licht</text>
+  <text x="395" y="745" text-anchor="middle" fill="#fff" font-weight="bold">Platine 100 × 160 mm (unverändert)</text>
+  <!-- Klemmen -->
+  <rect x="245" y="285" width="300" height="14" fill="#36a852"/>
+  <text x="395" y="312" text-anchor="middle" font-size="12" fill="#fff">Netzklemmen J1/J3/J4 hinten, kurze Wege zu den Becherkondensatoren</text>
+  <!-- Becherkondensatoren stehend -->
+  <circle cx="330" cy="207" r="57" fill="#5b8fd9" stroke="#1d4f99" stroke-width="2"/>
+  <circle cx="505" cy="207" r="57" fill="#5b8fd9" stroke="#1d4f99" stroke-width="2"/>
+  <text x="418" y="200" text-anchor="middle" font-size="12">2 Becher-</text>
+  <text x="418" y="214" text-anchor="middle" font-size="12">kondensatoren</text>
+  <text x="418" y="228" text-anchor="middle" font-size="12">stehend, Ø 35–40</text>
+  <!-- Antenne -->
+  <path d="M470 700 C 520 720, 580 760, 610 790 L 640 830" fill="none" stroke="#d14" stroke-width="3"/>
+  <rect x="625" y="830" width="60" height="16" fill="#d14"/>
+  <text x="700" y="845" fill="#d14" font-size="13">WLAN/BLE-Antenne nach außen führen (Metallraum schirmt ab)</text>
+
+  <!-- Bemaßung -->
+  <g stroke="#333" stroke-width="1.5">
+    <line x1="200" y1="100" x2="635" y2="100"/><line x1="200" y1="92" x2="200" y2="108"/><line x1="635" y1="92" x2="635" y2="108"/>
+    <line x1="860" y1="120" x2="860" y2="780"/><line x1="852" y1="120" x2="868" y2="120"/><line x1="852" y1="780" x2="868" y2="780"/>
+    <line x1="245" y1="840" x2="545" y2="840"/><line x1="245" y1="832" x2="245" y2="848"/><line x1="545" y1="832" x2="545" y2="848"/>
+  </g>
+  <text x="418" y="94" text-anchor="middle" font-weight="bold">145 mm</text>
+  <text x="875" y="455" font-weight="bold">220 mm</text>
+  <text x="395" y="866" text-anchor="middle">Platine 100 mm breit → je ca. 22 mm Luft zur Wand</text>
+  <text x="418" y="800" text-anchor="middle" fill="#555">vorne: Öffnung / Laschen mit Schraube (45 mm über Leiste)</text>
+
+  <!-- Notizen -->
+  <g font-size="14">
+    <text x="30" y="900" font-weight="bold">Ergebnis</text>
+    <text x="30" y="924">• Die Platine 100 × 160 mm passt längs hinein (160 von 220 mm Tiefe) – keine Layoutänderung nötig.</text>
+    <text x="30" y="946">• Dahinter bleiben ca. 55 mm Tiefe: Platz für 2 stehende Becherkondensatoren nebeneinander.</text>
+    <text x="30" y="968">• Die Platine sitzt nicht in Metallschienen, sondern auf einer isolierenden Trägerplatte → Randabstand unkritisch.</text>
+    <text x="30" y="990">• Der Metallraum ist zugleich ein gutes Brandschutzgehäuse für die Becherkondensatoren (S0).</text>
+    <text x="30" y="1030" font-weight="bold">Noch zu klären</text>
+    <text x="30" y="1054">• Nutzbare Höhe ≥ 100 mm? (stehender 8-µF-Becherkondensator + M8-Bolzen ≈ 95 mm)</text>
+    <text x="30" y="1076">• Laschen: Lochdurchmesser und Abstand von der Vorderkante → Befestigung der Trägerplatte</text>
+    <text x="30" y="1098">• Von welcher Seite kommen Netz-, Motor- und Lichtleitung?</text>
+    <text x="30" y="1120">• Kann die Antenne durch eine Tülle/Öffnung nach außen (z. B. unter die Blende)?</text>
+  </g>
+</svg>
