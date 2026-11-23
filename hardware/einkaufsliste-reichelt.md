@@ -45,9 +45,10 @@ Nicht bei Reichelt: ESP32-DevKitC-32U mit Antenne (bei Amazon bestellt), Platine
 | Befestigung   | Abstandsbolzen M3 × 10, Messing              | [ECON D3X10A5MT](https://www.reichelt.de/de/de/shop/produkt/abstandsbolzen_messing_m3_10_mm_innen_aussen-405416) | 4                         | 0,68         | plus M3-Schrauben/Muttern                                                                                                                                                                                 |
 | Bedienung     | Shelly BLU Button Tough 1                    | [SHELLY B-TOUGHI](https://www.reichelt.de/de/de/shop/produkt/shelly_blu_button_tough_1_ivory-372899)             | 1                         | 18,00        | Nachfolger des Button1, sendet ebenfalls BTHome. Auch bei Amazon o. Ä. kaufbar; wichtig ist **BLU** im Namen (Bluetooth), nicht der WLAN-„Shelly Button1“                                                 |
 | Licht         | LED G4, 12 V, 1,8 W, 185 lm, 3000 K, dimmbar | [GL 540975](https://www.reichelt.de/de/de/shop/produkt/led-lampe_g4_1_8_w_185_lm_3000_k_dimmbar-299670)          | **je Spot 1** (+1 Ersatz) | 3,60 / Stück | ersetzt die G4-Halogenlampen. Heller, wertig: Osram Superstar G4 2 W 200 lm ([OSR 075431904](https://www.reichelt.de/de/de/shop/produkt/led-lampe_superstar_g4_2_w_200_lm_2700_k_dimmbar-297924), 7,85 €) |
-|               | **Summe Zubehör**                            |                                                                                                                  |                           | **ca. 52 €** |                                                                                                                                                                                                           |
+| Einbau        | Trägerplatte FR4, 3 mm, 200 × 300 mm, V-0     | nicht bei Reichelt: [Höllein AT-GG30300](https://hoelleinshop.com/products/glasfaserplatte-gfk-3mm-klein-200x300mm-naturfarben) | 1 | 11,59 | selbst auf 143 × 205 mm sägen, Bohrschablone `traegerplatte/` |
+|               | **Summe Zubehör**                            |                                                                                                                  |                           | **ca. 64 €** |                                                                                                                                                                                                           |
 
-**Gesamt ca. 108 €** (A + B + C) plus Versand. Dazu kommen ESP32 (Amazon, 21 €) und die Platine.
+**Gesamt ca. 120 €** (A + B + C) plus Versand. Dazu kommen ESP32 (Amazon, 21 €) und die Platine.
 
 ## C. Testaufbau für die Stufen (vor der Platinenbestellung)
 
@@ -63,6 +64,8 @@ Aufbau und Ablauf: [Zeichnung](../docs/images/testaufbau-kondensatoren.png). Bec
 
 
 ## Hinweise
+
+- **Trägerplatte selbst zuschneiden:** FR4 lässt sich mit einer feinen Metallsäge (Bügelsäge, Stichsäge mit Metallblatt) oder einer Trennscheibe sägen und mit HSS- oder Hartmetallbohrer bohren. Der Glasfaserstaub juckt und gehört nicht in die Lunge: FFP2-Maske, möglichst draußen, Schnittkante nass halten oder absaugen, Kanten mit einer Feile entgraten. Zuschnitt nach Maß gibt es bei Fachhändlern (z. B. plastx24, Art.-Nr. 17555), dort aber nur für Gewerbekunden.
 
 - **Becherkondensatoren (Stufen):** Grobe Rechnung mit Motor ≈ 200 Ω (230 V / 1,15 A): Stufe 2 ≈ 15–20 µF (~0,8–0,9 A), Stufe 1 ≈ 10–12 µF (~0,6 A). Die früheren Startwerte 3/5/8 µF waren zu klein (3 µF ≈ 40 V am Motor). Endgültige Werte erst nach dem Testaufbau (Abschnitt C) festlegen; ggf. einen passenden Einzelwert nachkaufen (z. B. 10, 14, 16, 20 µF bei Reichelt als MKSP-5P).
 - **Becherkondensatoren Bauform:** MKSP-5P mit M8-Bolzen, 10–20 µF etwa Ø 35–40 × 65–83 mm. Sicherheitsklasse S0 (ohne Abreißsicherung): nur in geschlossener, schwer entflammbarer Dose betreiben, bevorzugt in der Haube am Platz der alten Steuerplatine. Anschluss über Schraubklemme J4, kein Löten nötig.
