@@ -6,7 +6,8 @@ Erzeugt eine Bohrschablone 1:1 (A4 hochkant, SVG in mm). Ausdrucken mit 100 %
 („Tatsächliche Größe“), Kontrollmaß 100 mm nachmessen, aufkleben, körnen, bohren.
 
 Maße Aufnahmeraum (Skizze 23.11.2026): 145 mm breit, 220 mm tief,
-Auflageleisten 10 mm, Laschen vorne 45 mm über der Leiste, ca. 5 mm von der Wand.
+Auflageleisten 10 mm, Laschen vorne: Bohrung 45 mm über der Leiste (gemessen),
+7,5 mm vom Laschenrand, Blechschraube ca. 3,5–4,2 mm.
 
 Koordinaten: X quer (0 = linke Plattenkante), Y in Einschubrichtung
 (0 = Vorderkante an der Öffnung, wächst nach hinten).
@@ -39,7 +40,7 @@ CAP_D_MAX = 40.0
 
 # --- Winkel vorne (Alu 25 x 50, 15 mm breit), Langloch zur Lasche ----------
 ANGLE_X0, ANGLE_W, ANGLE_LEG = 0.0, 15.0, 25.0
-LASCHE_X = 5.0 - 1.0                     # 5 mm von der Wand, Platte 1 mm von der Wand
+LASCHE_RAND = 7.5                        # Bohrung ab Laschenrand (gemessen)
 LASCHE_H = 45.0 - PLATE_T                # über Plattenoberseite
 
 holes = []   # (x, y, d, label)
@@ -98,9 +99,9 @@ def svg():
     for i, (a, b) in enumerate(leg):
         o.append(f'<text x="{ox}" y="{ly + 5*i + 4}" font-size="3"><tspan font-weight="bold">{a}</tspan>  {b}</text>')
     wy = ly + 19
-    o.append(f'<text x="{ox}" y="{wy}" font-size="3"><tspan font-weight="bold">Winkel</tspan> Alu 25 × 50 × 2 mm, 15 mm breit. Langloch 4,5 × 10 mm (senkrecht) im 50er-Schenkel,</text>')
-    o.append(f'<text x="{ox}" y="{wy+4.5}" font-size="3">Mitte ca. {LASCHE_H:.0f} mm über Plattenoberseite – erst nach Probeeinschub an der Lasche anzeichnen.</text>')
-    o.append(f'<text x="{ox}" y="{wy+9}" font-size="3" fill="#c00">Noch prüfen: Höhe ≥ 100 mm, Lage/Ø der Laschenschraube, Bolzengröße der Becherkondensatoren.</text>')
+    o.append(f'<text x="{ox}" y="{wy}" font-size="3"><tspan font-weight="bold">Winkel</tspan> Alu 25 × 50 × 2 mm, 15 mm breit. Langloch 5 × 10 mm (senkrecht) im 50er-Schenkel, für Blechschraube 3,5–4,2 mm,</text>')
+    o.append(f'<text x="{ox}" y="{wy+4.5}" font-size="3">Mitte {LASCHE_H:.0f} mm über Plattenoberseite (45 mm ab Leiste), {str(LASCHE_RAND).replace(".", ",")} mm vom Laschenrand – beim Probeeinschub anzeichnen.</text>')
+    o.append(f'<text x="{ox}" y="{wy+9}" font-size="3" fill="#c00">Noch prüfen: Höhe ≥ 100 mm, Bolzengröße der Becherkondensatoren.</text>')
     # Kontrollmaß
     cy = H - 12
     o.append(f'<path d="M{ox} {cy} H{ox+100} M{ox} {cy-2} V{cy+2} M{ox+100} {cy-2} V{cy+2}" stroke="#000" stroke-width="0.3"/>')

@@ -67,9 +67,9 @@
 <text x="33.5" y="247.0" font-size="3"><tspan font-weight="bold">Ø 3,2</tspan>  4× Abstandsbolzen Platine M3 × 10, 4× Winkel M3 Senkkopf von unten (liegt auf der Leiste)</text>
 <text x="33.5" y="252.0" font-size="3"><tspan font-weight="bold">Ø 8,5</tspan>  2× Becherkondensator M8 (Mutter unten)</text>
 <text x="33.5" y="257.0" font-size="3"><tspan font-weight="bold">Ø 4,0</tspan>  16× Kabelbinder 2,5–3,6 mm (Zugentlastung)</text>
-<text x="33.5" y="262.0" font-size="3"><tspan font-weight="bold">Winkel</tspan> Alu 25 × 50 × 2 mm, 15 mm breit. Langloch 4,5 × 10 mm (senkrecht) im 50er-Schenkel,</text>
-<text x="33.5" y="266.5" font-size="3">Mitte ca. 42 mm über Plattenoberseite – erst nach Probeeinschub an der Lasche anzeichnen.</text>
-<text x="33.5" y="271.0" font-size="3" fill="#c00">Noch prüfen: Höhe ≥ 100 mm, Lage/Ø der Laschenschraube, Bolzengröße der Becherkondensatoren.</text>
+<text x="33.5" y="262.0" font-size="3"><tspan font-weight="bold">Winkel</tspan> Alu 25 × 50 × 2 mm, 15 mm breit. Langloch 5 × 10 mm (senkrecht) im 50er-Schenkel, für Blechschraube 3,5–4,2 mm,</text>
+<text x="33.5" y="266.5" font-size="3">Mitte 42 mm über Plattenoberseite (45 mm ab Leiste), 7,5 mm vom Laschenrand – beim Probeeinschub anzeichnen.</text>
+<text x="33.5" y="271.0" font-size="3" fill="#c00">Noch prüfen: Höhe ≥ 100 mm, Bolzengröße der Becherkondensatoren.</text>
 <path d="M33.5 285 H133.5 M33.5 283 V287 M133.5 283 V287" stroke="#000" stroke-width="0.3"/>
 <text x="83.5" y="282" font-size="3" text-anchor="middle">Kontrollmaß 100 mm</text>
 </svg>
