@@ -87,6 +87,7 @@ smart-range-hood-esp32/
 │   │   ├── make_3d_terminals.py
 │   │   └── dunstabzug-steuerplatine/
 │   ├── gerber/               # fabrication output
+│   ├── traegerplatte/        # carrier plate drilling template 1:1 (Python → SVG)
 │   └── einkaufsliste-reichelt.md   # BOM with Reichelt links (German)
 └── firmware/
     └── esphome/              # ESPHome test configurations

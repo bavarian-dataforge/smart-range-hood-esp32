@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297" font-family="Helvetica, Arial, sans-serif">
+<rect width="210" height="297" fill="#fff"/>
+<text x="10" y="10" font-size="5" font-weight="bold">Trägerplatte 143 × 205 × 3 mm – Bohrschablone 1:1</text>
+<text x="10" y="16" font-size="3">Mit 100 % drucken, Kontrollmaß unten messen. Isolierend: Polycarbonat oder FR4. Blick von oben.</text>
+<text x="10" y="21" font-size="3">↑ hinten (geschlossen, ca. 15 mm Spalt)</text>
+<rect x="33.5" y="30.0" width="143.0" height="205.0" fill="none" stroke="#000" stroke-width="0.4"/>
+<rect x="55.0" y="73.0" width="100.0" height="160.0" fill="#2f7d46" fill-opacity="0.12" stroke="#2f7d46" stroke-width="0.3" stroke-dasharray="2 1"/>
+<text x="105.0" y="79.0" font-size="3" text-anchor="middle" fill="#2f7d46">Platine 100 × 160 – Netzklemmen hier (hinten)</text>
+<text x="105.0" y="230.0" font-size="3" text-anchor="middle" fill="#2f7d46">ESP32 / Kleinspannung vorne</text>
+<circle cx="75.0" cy="51.5" r="20.0" fill="none" stroke="#1d4f99" stroke-width="0.3" stroke-dasharray="2 1"/>
+<circle cx="135.0" cy="51.5" r="20.0" fill="none" stroke="#1d4f99" stroke-width="0.3" stroke-dasharray="2 1"/>
+<rect x="33.5" y="210.0" width="15.0" height="25.0" fill="#999" fill-opacity="0.15" stroke="#666" stroke-width="0.3" stroke-dasharray="1.5 1"/>
+<rect x="161.5" y="210.0" width="15.0" height="25.0" fill="#999" fill-opacity="0.15" stroke="#666" stroke-width="0.3" stroke-dasharray="1.5 1"/>
+<circle cx="59.00" cy="77.00" r="1.6" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M55.90 77.00 H62.10 M59.00 73.90 V80.10" stroke="#c00" stroke-width="0.15"/>
+<circle cx="59.00" cy="229.00" r="1.6" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M55.90 229.00 H62.10 M59.00 225.90 V232.10" stroke="#c00" stroke-width="0.15"/>
+<circle cx="151.00" cy="77.00" r="1.6" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M147.90 77.00 H154.10 M151.00 73.90 V80.10" stroke="#c00" stroke-width="0.15"/>
+<circle cx="151.00" cy="229.00" r="1.6" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M147.90 229.00 H154.10 M151.00 225.90 V232.10" stroke="#c00" stroke-width="0.15"/>
+<circle cx="75.00" cy="51.50" r="4.25" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M69.25 51.50 H80.75 M75.00 45.75 V57.25" stroke="#c00" stroke-width="0.15"/>
+<circle cx="135.00" cy="51.50" r="4.25" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M129.25 51.50 H140.75 M135.00 45.75 V57.25" stroke="#c00" stroke-width="0.15"/>
+<circle cx="41.00" cy="228.00" r="1.6" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M37.90 228.00 H44.10 M41.00 224.90 V231.10" stroke="#c00" stroke-width="0.15"/>
+<circle cx="41.00" cy="217.00" r="1.6" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M37.90 217.00 H44.10 M41.00 213.90 V220.10" stroke="#c00" stroke-width="0.15"/>
+<circle cx="169.00" cy="228.00" r="1.6" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M165.90 228.00 H172.10 M169.00 224.90 V231.10" stroke="#c00" stroke-width="0.15"/>
+<circle cx="169.00" cy="217.00" r="1.6" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M165.90 217.00 H172.10 M169.00 213.90 V220.10" stroke="#c00" stroke-width="0.15"/>
+<circle cx="47.50" cy="198.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M44.00 198.00 H51.00 M47.50 194.50 V201.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="47.50" cy="192.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M44.00 192.00 H51.00 M47.50 188.50 V195.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="47.50" cy="138.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M44.00 138.00 H51.00 M47.50 134.50 V141.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="47.50" cy="132.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M44.00 132.00 H51.00 M47.50 128.50 V135.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="47.50" cy="88.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M44.00 88.00 H51.00 M47.50 84.50 V91.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="47.50" cy="82.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M44.00 82.00 H51.00 M47.50 78.50 V85.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="47.50" cy="43.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M44.00 43.00 H51.00 M47.50 39.50 V46.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="47.50" cy="37.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M44.00 37.00 H51.00 M47.50 33.50 V40.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="162.50" cy="198.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M159.00 198.00 H166.00 M162.50 194.50 V201.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="162.50" cy="192.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M159.00 192.00 H166.00 M162.50 188.50 V195.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="162.50" cy="138.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M159.00 138.00 H166.00 M162.50 134.50 V141.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="162.50" cy="132.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M159.00 132.00 H166.00 M162.50 128.50 V135.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="162.50" cy="88.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M159.00 88.00 H166.00 M162.50 84.50 V91.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="162.50" cy="82.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M159.00 82.00 H166.00 M162.50 78.50 V85.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="162.50" cy="43.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M159.00 43.00 H166.00 M162.50 39.50 V46.50" stroke="#c00" stroke-width="0.15"/>
+<circle cx="162.50" cy="37.00" r="2.0" fill="none" stroke="#c00" stroke-width="0.25"/>
+<path d="M159.00 37.00 H166.00 M162.50 33.50 V40.50" stroke="#c00" stroke-width="0.15"/>
+<text x="33.5" y="239.0" font-size="3">↓ vorne (Öffnung, Einschub) – Winkel links/rechts an die Laschen</text>
+<text x="33.5" y="247.0" font-size="3"><tspan font-weight="bold">Ø 3,2</tspan>  4× Abstandsbolzen Platine M3 × 10, 4× Winkel M3 Senkkopf von unten (liegt auf der Leiste)</text>
+<text x="33.5" y="252.0" font-size="3"><tspan font-weight="bold">Ø 8,5</tspan>  2× Becherkondensator M8 (Mutter unten)</text>
+<text x="33.5" y="257.0" font-size="3"><tspan font-weight="bold">Ø 4,0</tspan>  16× Kabelbinder 2,5–3,6 mm (Zugentlastung)</text>
+<text x="33.5" y="262.0" font-size="3"><tspan font-weight="bold">Winkel</tspan> Alu 25 × 50 × 2 mm, 15 mm breit. Langloch 4,5 × 10 mm (senkrecht) im 50er-Schenkel,</text>
+<text x="33.5" y="266.5" font-size="3">Mitte ca. 42 mm über Plattenoberseite – erst nach Probeeinschub an der Lasche anzeichnen.</text>
+<text x="33.5" y="271.0" font-size="3" fill="#c00">Noch prüfen: Höhe ≥ 100 mm, Lage/Ø der Laschenschraube, Bolzengröße der Becherkondensatoren.</text>
+<path d="M33.5 285 H133.5 M33.5 283 V287 M133.5 283 V287" stroke="#000" stroke-width="0.3"/>
+<text x="83.5" y="282" font-size="3" text-anchor="middle">Kontrollmaß 100 mm</text>
+</svg>
