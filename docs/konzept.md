@@ -202,16 +202,17 @@ Aufgenommen nach Fotos (die Fotos bleiben privat und liegen nicht im Repo). Zuor
 
 | Leitung | Adern / Farbe | Anschluss heute | Bedeutung |
 |---|---|---|---|
-| Netzzuleitung 230 V AC | Braun, Blau | rote isolierte Flachsteckhülsen 6,3 mm | Braun = L, Blau = N (zu bestätigen). Braun kommt aus der grauen Mantelleitung, Blau ist über einen roten Stoßverbinder mit einer weißen Leitung verbunden, die links durch die Wand geht – Herkunft prüfen. |
+| Netzzuleitung 230 V AC | Braun (graue Mantelleitung), dazu N | rote isolierte Flachsteckhülse 6,3 mm | Braun = L (zu bestätigen); N-Ader durchmessen |
 | Schutzleiter | Gelb/Grün | roter Ringkabelschuh | PE an Gehäuse/Masse |
 | Motor | Blau, Schwarz (Braun nur zum Betriebskondensator) | 3-polige Lüsterklemme | Laut Typenschild Blau = L (über TW), Schwarz = N |
 | Abgang Lüsterklemme | Grau, Schwarz, dünne weiße Ader | eine Ader mit WAGO-Klemme, Grau mit offenem Litzenende | ging zur alten Steuerung; Zuordnung zu den Motoradern durchmessen |
-| Licht „Spot“ | Weiße Mantelleitung, Braun + Blau, beschriftet „Spot“ | lose | Spannung und Art (AC/DC, Trafo in der Leuchte?) **unbekannt** – zuletzt klären |
+| Licht „Spot“ | kurze weiße Mantelleitung, Braun + Blau, beschriftet „Spot“ | lose | Spannung und Art unbekannt |
+| Beleuchtung (lange weiße Leitung) | Braun + Blau | Blau über roten Stoßverbinder verlängert, endet in roter Flachsteckhülse | geht links durch die Wand zur Beleuchtung; Spannung und Art (AC/DC, Trafo/Treiber in der Leuchte?) **unbekannt** – zuletzt klären |
 
 Hinweise:
 
 - Offene Litzenenden isolieren (Klemme/Aderendhülse), solange die Haube am Netz hängt.
-- Zum Licht: Abschnitt 4 geht von 12-V-Halogen-G4 mit eigenem Trafo aus. Ob dieser Trafo in der alten Steuerung saß oder in der Leuchte steckt, ist offen. Davon hängt ab, ob der Lichtausgang J5 (12 V DC, MOSFET) passt. Erste Prüfung spannungsfrei: Widerstand der Spot-Adern messen (wenige Ω = Halogen/12-V-Last direkt; hoher Wert oder offen = Treiber/Trafo in der Leuchte).
+- Zum Licht: Abschnitt 4 geht von 12-V-Halogen-G4 mit eigenem Trafo aus. Es gibt zwei Lichtleitungen (kurze „Spot“, lange Beleuchtung). Ob der Trafo in der alten Steuerung saß oder in der Leuchte steckt, ist offen. Davon hängt ab, ob der Lichtausgang J5 (12 V DC, MOSFET) passt. Erste Prüfung spannungsfrei: Widerstand beider Lichtleitungen messen (wenige Ω = Halogen/12-V-Last direkt; hoher Wert oder offen = Treiber/Trafo in der Leuchte).
 
 ## 6. Architektur
 
@@ -559,7 +560,7 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 - [ ] WLAN-Empfangstest mit Dev-Board im Edelstahlkamin
 - [ ] Kabelweg Gehäuse → Motor und Licht, vorhandene Steckverbinder, benötigte Länge
 - [ ] Leitungen im Anschlussraum durchmessen (Abschnitt 5a, Tabelle „Vorhandene Leitungen“)
-- [ ] Spot-Leitung: AC oder DC, Trafo/Treiber in der Leuchte? (zuletzt klären)
+- [ ] Lichtleitungen (Spot und lange Beleuchtung): AC oder DC, Trafo/Treiber in der Leuchte? (zuletzt klären)
 
 ## 11. Aufgabenliste
 
