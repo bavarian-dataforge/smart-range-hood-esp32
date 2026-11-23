@@ -241,7 +241,7 @@ Alles oberhalb der Leitungen zur Haube sitzt im Steuergehäuse in der Kaminverkl
 
 ## 6b. Steuerplatine: Layout-Konzept
 
-Bestückungsskizze im Maßstab 1 : 1: [`hardware/platine-layout-konzept.svg`](hardware/platine-layout-konzept.svg). Konzept für Variante A (Relais + Kondensatoren) und LED-Licht 12 V, **kein freigegebenes Layout**.
+Bestückungsskizze im Maßstab 1 : 1: [`hardware/platine-layout-konzept.svg`](../hardware/platine-layout-konzept.svg). Konzept für Variante A (Relais + Kondensatoren) und LED-Licht 12 V, **kein freigegebenes Layout**.
 
 ### Grundaufbau
 
@@ -591,7 +591,7 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 - [x] KiCad: Leiterbahnen verlegen, GND-Fläche (per Skript, 22.11.2026)
 - [x] KiCad: Gerber- und Bohrdaten exportieren (22.11.2026)
 - [x] Netzabstand auf 3 mm erhöht, Klemmen 7,5 mm, neu verlegt, Gerber neu (22.11.2026)
-- [x] Einkaufsliste Reichelt: [`hardware/einkaufsliste-reichelt.md`](hardware/einkaufsliste-reichelt.md); Sicherungshalter dafür auf Schurter OGN umgestellt (22.11.2026)
+- [x] Einkaufsliste Reichelt: [`hardware/einkaufsliste-reichelt.md`](../hardware/einkaufsliste-reichelt.md); Sicherungshalter dafür auf Schurter OGN umgestellt (22.11.2026)
 - [x] ESP32-DevKitC-32U (2 Stück mit Antenne) bestellt
 - [ ] **Vor der Bestellung besprechen:** Q1 (AO3400A, SOT-23) ist das einzige SMD-Teil. Entweder selbst löten (Lötkolben mit feiner Spitze oder Heißluft, Flussmittel) oder Teilbestückung beim Hersteller (JLCPCB, LCSC C20917; dafür BOM + Bestückungsdatei erzeugen)
 - [ ] Platine bestellen (nach Prüfung durch die EFKffT und Gegencheck durch den Elektriker)
