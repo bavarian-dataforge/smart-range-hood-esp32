@@ -206,13 +206,13 @@ Aufgenommen nach Fotos (die Fotos bleiben privat und liegen nicht im Repo). Zuor
 | Schutzleiter | Gelb/Grün | roter Ringkabelschuh | PE an Gehäuse/Masse |
 | Motor | Blau, Schwarz (Braun nur zum Betriebskondensator) | 3-polige Lüsterklemme | Laut Typenschild Blau = L (über TW), Schwarz = N |
 | Abgang Lüsterklemme | Grau, Schwarz, dünne weiße Ader | eine Ader mit WAGO-Klemme, Grau mit offenem Litzenende | ging zur alten Steuerung; Zuordnung zu den Motoradern durchmessen |
-| Licht „Spot“ | kurze weiße Mantelleitung, Braun + Blau, beschriftet „Spot“ | lose | Spannung und Art unbekannt |
+| Licht „Spot“ | kurze weiße Mantelleitung, Braun + Blau, beschriftet „Spot“ | lose | **12 V DC**, mit Labornetzteil erfolgreich getestet (23.11.2026) → J5 / MOSFET Q1 |
 | Beleuchtung (lange weiße Leitung) | Braun + Blau | Blau über roten Stoßverbinder verlängert, endet in roter Flachsteckhülse | geht links durch die Wand zur Beleuchtung; Spannung und Art (AC/DC, Trafo/Treiber in der Leuchte?) **unbekannt** – zuletzt klären |
 
 Hinweise:
 
 - Offene Litzenenden isolieren (Klemme/Aderendhülse), solange die Haube am Netz hängt.
-- Zum Licht: Abschnitt 4 geht von 12-V-Halogen-G4 mit eigenem Trafo aus. Es gibt zwei Lichtleitungen (kurze „Spot“, lange Beleuchtung). Ob der Trafo in der alten Steuerung saß oder in der Leuchte steckt, ist offen. Davon hängt ab, ob der Lichtausgang J5 (12 V DC, MOSFET) passt. Erste Prüfung spannungsfrei: Widerstand beider Lichtleitungen messen (wenige Ω = Halogen/12-V-Last direkt; hoher Wert oder offen = Treiber/Trafo in der Leuchte).
+- Zum Licht: Abschnitt 4 geht von 12-V-Halogen-G4 mit eigenem Trafo aus. Es gibt zwei Lichtleitungen: Die kurze „Spot“-Leitung läuft nachweislich mit 12 V DC und passt zu J5. Bei der langen Beleuchtung ist offen, ob ein Trafo/Treiber in der Leuchte steckt. Davon hängt ab, ob der Lichtausgang J5 (12 V DC, MOSFET) passt. Erste Prüfung spannungsfrei: Widerstand der langen Beleuchtungsleitung messen (wenige Ω = Halogen/12-V-Last direkt; hoher Wert oder offen = Treiber/Trafo in der Leuchte).
 
 ## 6. Architektur
 
@@ -560,7 +560,8 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 - [ ] WLAN-Empfangstest mit Dev-Board im Edelstahlkamin
 - [ ] Kabelweg Gehäuse → Motor und Licht, vorhandene Steckverbinder, benötigte Länge
 - [ ] Leitungen im Anschlussraum durchmessen (Abschnitt 5a, Tabelle „Vorhandene Leitungen“)
-- [ ] Lichtleitungen (Spot und lange Beleuchtung): AC oder DC, Trafo/Treiber in der Leuchte? (zuletzt klären)
+- [x] Spot-Leitung: 12 V DC, getestet (23.11.2026)
+- [ ] Lange Beleuchtungsleitung: AC oder DC, Trafo/Treiber in der Leuchte? (zuletzt klären)
 
 ## 11. Aufgabenliste
 
