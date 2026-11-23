@@ -1,5 +1,7 @@
 # Smart Range Hood ESP32
 
+**English** · [Deutsch](README.de.md)
+
 **Open-source ESP32 controller for a GUTMANN kitchen range hood**
 
 An open-source project to replace the unavailable original control electronics of a GUTMANN kitchen extractor hood with a custom ESP32-based controller.
@@ -75,7 +77,8 @@ Fallback control: Shelly BLU button (BLE, works without Wi-Fi)
 
 ```text
 smart-range-hood-esp32/
-├── README.md
+├── README.md                 # English
+├── README.de.md              # German
 ├── docs/
 │   ├── konzept.md            # full concept, checklists, test plan (German)
 │   └── images/               # nameplates, filter, hood terminal space
