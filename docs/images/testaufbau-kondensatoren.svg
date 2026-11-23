@@ -14,7 +14,7 @@
 
   <!-- Gehäuse -->
   <rect x="215" y="100" width="660" height="480" rx="12" fill="none" stroke="#e08a00" stroke-width="3" stroke-dasharray="10 6"/>
-  <text x="232" y="126" font-weight="bold" fill="#e08a00">Geschlossenes Gehäuse (CRDCG0007, 190 × 120 × 60 mm – später für die Platine)</text>
+  <text x="232" y="126" font-weight="bold" fill="#e08a00">Geschlossenes Testgehäuse (CRDCG0007, 190 × 120 × 60 mm – nur für den Testaufbau)</text>
 
   <!-- L Netz -> Wago A -->
   <line x1="180" y1="265" x2="280" y2="265" stroke="#8b4513" stroke-width="4"/>

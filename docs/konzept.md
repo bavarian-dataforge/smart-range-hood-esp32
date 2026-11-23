@@ -28,7 +28,7 @@ Firmware (ESPHome-YAML), Schaltplan und PCB werden in Git versioniert.
 | Bauform | Inselhaube, zweiteiliger Edelstahlkamin bis zur abgehängten Decke  |
 | Bedienung | Smart über Home Assistant/App. Original-Display defekt und wird nicht mehr genutzt. Der Drehknopf an der Front gehört zum Induktionskochfeld, nicht zur Haube |
 | Bedienung ohne WLAN | BLE-Funktaster, den der ESP32 direkt auswertet (Abschnitt 5) |
-| Einbauort Elektronik | Eigenes Gehäuse in der Kaminverkleidung neben dem Abluftkanal, nicht im Haubenkörper (Fett) |
+| Einbauort Elektronik | Im Aufnahmeraum der alten Steuerung auf einer FR4-Trägerplatte, ohne eigenes Gehäuse (Abschnitt 5a, Entscheidung 23.11.2026) |
 | Lüfterregelung | Relais/Kondensatorstufen und Triac vergleichen, Entscheidung nach Tests |
 
 ## 2. Motor
@@ -183,18 +183,26 @@ Die Haube wird **smart bedient**. Das defekte Original-Display und seine Platine
 
 **Display-Fenster:** Mit einer Blende verschließen (Kunststoff/Edelstahl, ggf. 3D-Druck). Optional später eine Status-LED dahinter, dann aber nur Kleinspannung an der Front.
 
-## 5a. Einbauort Steuergehäuse
+## 5a. Einbauort: Aufnahmeraum der alten Steuerung
 
-Die Haube ist eine große **Inselhaube**. Der zweiteilige Edelstahlkamin (unteres Teil steckt im oberen) reicht bis zur abgehängten Decke und enthält den Abluftkanal. Der Netzanschluss kommt sehr wahrscheinlich von der Decke. Die Elektronik kommt in ein eigenes Gehäuse **im Kamin neben dem Abluftkanal**, möglichst weit oben (kühler, weniger Fett, kurzer Weg zum Netzanschluss).
+Die Haube ist eine große **Inselhaube** mit zweiteiligem Edelstahlkamin bis zur abgehängten Decke. Die neue Steuerung kommt **an die Stelle der alten**: in den Aufnahmeraum der Originalsteuerung (145 × 220 mm, Auflageleisten 10 mm, Laschen vorne). Platine und Becherkondensatoren sitzen auf einer isolierenden **Trägerplatte** (FR4 3 mm, 143 × 205 mm), die eingeschoben und an den Laschen verschraubt wird. Maße und Bohrbild: [Bohrschablone](../hardware/traegerplatte/) und [Draufsicht](images/einbau-draufsicht.png).
 
-- **Nicht auf den Abluftkanal montieren:** Warme, feuchte, fetthaltige Luft, Vibration. Gehäuse an der Wand oder am Rahmen der Verkleidung befestigen.
-- **Gehäuse:** Geschlossen, mindestens IP54, Kabel über Kabelverschraubungen mit Zugentlastung.
-- **Zugang:** Das untere Kaminteil lässt sich voraussichtlich nach oben schieben bzw. abnehmen; Gehäuse so setzen, dass es dann erreichbar ist. Ein Service-Taster am Gehäuse dient als Rückfallebene und für Wartung.
-- **WLAN:** Kamin und Front sind aus Edelstahl (Front magnetisch), das schirmt Funk stark ab. ESP32-Modul mit Antennenbuchse (z. B. ESP32-WROOM-32**U**) und externer Antenne einplanen, z. B. durch die abgehängte Decke oder am Kaminfuß. Vorher mit einem Dev-Board im eingebauten Zustand den Empfang testen.
-- **Leitungen zur Haube:**
-  - Motor: Netzspannung, mehradrige Leitung (L-geschaltet, N, PE, ggf. Hilfswicklung). Betriebskondensator bleibt am Motor.
-  - Licht: 12 V DC, zweiadrig.  - Querschnitte und Leitungsart (Temperaturbeständigkeit) durch Fachkraft festlegen.
-- **Bauraum:** Die ursprünglichen 140 × 180 mm gelten für den Platz in der Haube und sind nicht mehr die Grenze. Gehäusegröße richtet sich nach dem Platz in der Verkleidung.
+**Kein eigenes Gehäuse (Entscheidung 23.11.2026).** Die Originalsteuerung saß ebenfalls offen im Aufnahmeraum. Der Raum selbst übernimmt die Aufgaben des Gehäuses, solange diese Bedingungen erfüllt sind:
+
+- **Geschlossen:** Im Betrieb ist die Abdeckung montiert, keine spannungsführenden Teile sind berührbar.
+- **Nur mit Werkzeug zu öffnen:** verschraubt, nicht nur gesteckt.
+- **Metall und am PE:** Der Raum ist zugleich Brandschutzgehäuse, z. B. für einen ausfallenden Becherkondensator (Sicherheitsklasse S0).
+- **Isolierend getragen:** Die Platine sitzt auf Abstandsbolzen auf der FR4-Platte, nicht direkt auf Blech. Randabstände zum Metall trotzdem einhalten, vor allem auf der Netzseite.
+- **Zugentlastung:** Alle Leitungen mit Kabelbindern auf der Trägerplatte fixieren (Löcher in der Schablone), keine Adern an Blechkanten.
+- **Temperatur:** Die Abluft strömt außerhalb des Raums vorbei (ca. 30–70 °C). Der DS18B20 an J6 überwacht die Temperatur im Raum und warnt ab 60 °C.
+- **Fett:** Der Raum liegt geschützt im Haubenkörper. Bei der Wartung auf Fettablagerungen prüfen, ggf. Schutzlack auf die Platine.
+
+Weitere Punkte:
+
+- **WLAN:** Kamin und Front sind aus Edelstahl (Front magnetisch), das schirmt Funk stark ab. ESP32-Modul mit Antennenbuchse (ESP32-WROOM-32**U**) und externer Antenne, Antenne durch eine Tülle nach außen führen. Vorher mit einem Dev-Board im eingebauten Zustand den Empfang testen.
+- **Leitungen:** Netz, Motor und Licht liegen bereits im Aufnahmeraum (Tabelle unten). Der Betriebskondensator bleibt am Motor. Querschnitte und Leitungsart (Temperaturbeständigkeit) durch die Fachkraft bestätigen.
+- **Offen:** nutzbare Höhe ≥ 100 mm (stehender Becherkondensator mit M8-Bolzen ≈ 95 mm).
+- **Testaufbau:** Für den Versuch auf dem Tisch liegen 230 V und geladene Becherkondensatoren offen. Dafür ist ein geschlossenes Testgehäuse sinnvoll (Einkaufsliste, optional). Wird direkt in der Haube getestet, nur spannungsfrei umstecken und im Betrieb abdecken.
 
 ### Vorhandene Leitungen im Anschlussraum (Stand 23.11.2026)
 
@@ -235,7 +243,7 @@ Hinweise:
   └── PE → Gehäuse, Motor
 ```
 
-Alles oberhalb der Leitungen zur Haube sitzt im Steuergehäuse in der Kaminverkleidung (Abschnitt 5a).
+Alles sitzt auf der Trägerplatte im Aufnahmeraum der alten Steuerung (Abschnitt 5a).
 
 **Eine Platine mit zwei getrennten Zonen** (Netzzone und Kleinspannungszone), Details in Abschnitt 6b.
 
@@ -270,11 +278,11 @@ Sicherungswerte sind Richtwerte und werden von der Elektrofachkraft festgelegt. 
 | F1, F2 | Sicherungshalter 5 × 20 mm, Schurter OGN (0031.8201), Raster 22,5 mm, mit Abdeckhaube | siehe Absicherung |
 | RV1, CX | Varistor, X2-Kondensator | direkt hinter F1 |
 | K1–K4 | Printrelais 12-V-Spule, 10 A / 250 V AC, verstärkte Isolation Spule–Kontakt (z. B. Finder 40.31) | Kontaktseite zur Netzzone |
-| J4 | Anschluss für CM1–CM3 (je 2 Pole), 6-polig, Raster 7,5 mm | Kondensatoren extern im Gehäuse, so lassen sich Werte im Versuch tauschen |
+| J4 | Anschluss für CM1–CM3 (je 2 Pole), 6-polig, Raster 7,5 mm | Becherkondensatoren neben der Platine auf der Trägerplatte, so lassen sich Werte im Versuch tauschen |
 | R-Entl. | je Kondensator 2 × 470 kΩ in Reihe (0207, 0,6 W) | entlädt CM1–CM3 nach dem Abschalten |
 | J3 | Motorausgang M-L, M-N | Schraubklemme 7,5 mm (wie J1) |
 
-**PE** wird nicht über die Platine geführt, sondern mit einer Verbindungsklemme (z. B. Wago 221) im Gehäuse: Zuleitung, Motor, Haubengehäuse.
+**PE** wird nicht über die Platine geführt, sondern mit einer Verbindungsklemme (z. B. Wago 221) im Aufnahmeraum: Zuleitung, Motor, Haubengehäuse.
 
 **Leiterbahnen Netz:** mindestens 2,5 mm breit (bei 35 µm Kupfer reichlich für 2–3 A), Abstand L–N mindestens 3 mm, keine Vias im Lastpfad nötig.
 
@@ -299,7 +307,7 @@ Leistungsbudget PS1: Relais (nur eins gleichzeitig an, ca. 0,4 W) + ESP32 (ca. 1
 - In KiCad zwei Netzklassen anlegen („Netz": Abstand 3 mm, Breite 2,5 mm; „SELV": Standard) und eine Sperrfläche (Rule Area) über der Barriere ohne Kupfer.
 - Lastpfad: K1-Ausgang → M-L direkt; K2/K3/K4-Ausgang → CM1a/CM2a/CM3a → Kondensator → CM1b/CM2b/CM3b → M-L → J3.
 - Bestückungsdruck: Warnsymbol und „230 V" auf der Netzzone, Sicherungswerte neben die Halter.
-- Platine im geschlossenen Gehäuse; Netzzone zusätzlich mit Abdeckung, wenn das Gehäuse im Betrieb geöffnet wird.
+- Platine im geschlossenen, nur mit Werkzeug zu öffnenden Aufnahmeraum; Netzzone zusätzlich abdecken, wenn der Raum im Betrieb geöffnet wird.
 
 ### KiCad-Projekt
 
@@ -462,8 +470,8 @@ Die Haube enthält **230 V AC** und einen **260-W-Induktionsmotor**. Maßgeblich
 - Schutzleiter an Gehäuse und Motor
 - Absicherung (Feinsicherung auf der Leistungsplatine), Varistor, X2-Filter
 - **Kriech- und Luftstrecken** zwischen 230 V und Kleinspannung: verstärkte Isolierung, Richtwert mindestens 6 mm, in fettiger Küchenumgebung eher mehr; ggf. Schlitz in der Platine. Verbindlich ist die Norm.
-- Berührungsschutz, Zugentlastung, Schutz gegen Fett und Feuchte: Gehäuse außerhalb der Fettzone (Abschnitt 5a), trotzdem geschlossen, ggf. Schutzlack
-- Netzspannungsleitung zwischen Steuergehäuse und Haube geschützt verlegen, nicht scheuernd an Blechkanten, nicht am heißen Abluftkanal
+- Berührungsschutz, Zugentlastung, Schutz gegen Fett und Feuchte: geschlossener Aufnahmeraum aus Metall am PE (Abschnitt 5a), ggf. Schutzlack
+- Leitungen im Aufnahmeraum geschützt verlegen, nicht scheuernd an Blechkanten, nicht am heißen Abluftkanal
 - Thermische Auslegung (Triac-Kühlkörper, Kondensatoren für 85 °C+)
 - Entladewiderstände an allen Kondensatoren im Netzteil
 - Auslegung, Aufbau und Prüfung (Isolationsmessung, Schutzleiterprüfung) der Netzspannungsbaugruppe **durch eine Elektrofachkraft**
@@ -483,7 +491,7 @@ Im Haus steht ein Kaminofen mit Außenluftzufuhr. Die Haube arbeitet im Abluftbe
 
 ### Prüfliste Netzseite (Stand 22.11.2026)
 
-Normwerte aus EN 60335-1 bzw. IEC 60664-1 sind aus dem Gedächtnis eingetragen und **in der Norm nachzuschlagen**. Annahme: Verschmutzungsgrad 2 (geschlossenes Gehäuse außerhalb der Fettzone), Überspannungskategorie II, Isolierstoffgruppe IIIa (FR-4).
+Normwerte aus EN 60335-1 bzw. IEC 60664-1 sind aus dem Gedächtnis eingetragen und **in der Norm nachzuschlagen**. Annahme: Verschmutzungsgrad 2 (geschlossener Metall-Aufnahmeraum im Haubenkörper; Fettnebel nicht ganz auszuschließen, deshalb 8 mm statt 6 mm Kriechstrecke), Überspannungskategorie II, Isolierstoffgruppe IIIa (FR-4).
 
 **A. Isolation Netz ↔ Kleinspannung (verstärkt)**
 
@@ -518,7 +526,7 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 |---|---|---|---|
 | Zuleitung Haube → J1 | ca. 1,3 A | wie vorhanden, meist 1,5 mm² | Querschnitt passend zum LS (B16 → 1,5 mm²) |
 | J3 → Motor | ca. 1,13 A | 0,75–1,0 mm² H05V-K bzw. H05VV-F | wie die originale Motorleitung |
-| J4 → CM1–CM3 | < 1 A | 0,75 mm² H05V-K | kurz, im Steuergehäuse |
+| J4 → CM1–CM3 | < 1 A | 0,75 mm² H05V-K | kurz, auf der Trägerplatte |
 | J5 → LED 12 V | < 2 A | 0,75 mm² | SELV, getrennt von 230 V verlegen |
 
   Hinter F1 (T2,5A) ist jede Leitung ab 0,75 mm² sicher geschützt. Die Zuleitung **vor** F1 hängt am LS des Küchenstromkreises und braucht dessen Querschnitt. Feindrähtige Leiter mit Aderendhülsen
@@ -527,7 +535,7 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 
 - Bauart MKP, Nennspannung ≥ 450 V AC, für Motorbetrieb (Klasse S2/S3 nach EN 60252-1 o. ä.)
 - Entladewiderstand 2 × 470 kΩ = 940 kΩ. Bei 8 µF: τ = 7,5 s, von 325 V auf 60 V in ca. 13 s, auf 34 V in ca. 17 s
-  → Hinweis „Vor dem Öffnen 30 s warten“ im Gehäuse, oder kleinere Widerstände (z. B. 2 × 220 kΩ: ca. 6 s auf 60 V, bei 200 V über CM nur ca. 0,05 W je Widerstand)
+  → Hinweis „Vor dem Öffnen 30 s warten“ an der Abdeckung des Aufnahmeraums, oder kleinere Widerstände (z. B. 2 × 220 kΩ: ca. 6 s auf 60 V, bei 200 V über CM nur ca. 0,05 W je Widerstand)
 - Spannung über CM im Betrieb messen (Abschnitt 3); zwei Widerstände in Reihe teilen sie sich. 0207-Widerstand mit ≥ 250 V Grenzspannung reicht dann sicher
 - Umschalten mit geladenem CM: Spannung über dem schließenden Kontakt bis ca. 650 V Spitze, Strom nur durch die Motorwicklung begrenzt (ca. 42 Ω Gleichstromwiderstand → bis ca. 15 A Spitze). Unter dem Spitzenstrom des Relais, aber im Versuch beobachten (Kontaktabbrand)
 
@@ -544,9 +552,9 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 
 **F. Schutzleiter und Gehäuse**
 
-- PE von der Zuleitung zu Haubengehäuse, Motor und ggf. Metall-Steuergehäuse über Verbindungsklemme, nicht über die Platine
-- Antennenkabel (Kleinspannung) mit Abstand zu Netzleitungen durch den Edelstahlkamin führen
-- Zugentlastung für alle 230-V-Leitungen am Steuergehäuse
+- PE von der Zuleitung zu Haubengehäuse, Motor über Verbindungsklemme, nicht über die Platine
+- Antennenkabel (Kleinspannung) mit Abstand zu Netzleitungen aus dem Aufnahmeraum führen
+- Zugentlastung für alle 230-V-Leitungen auf der Trägerplatte (Kabelbinder)
 
 **G. Messungen nach dem Aufbau**
 
@@ -567,9 +575,9 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 - [ ] Anzahl der Spots zählen (Menge LED-G4, Budget PS1)
 - [ ] Display-Fenster ausmessen und Blende planen
 - [ ] Platz im Kamin messen (Breite/Tiefe/Höhe neben dem Abluftkanal), Befestigungsmöglichkeit, lässt sich das untere Kaminteil verschieben?
-- [ ] Wo kommt der Netzanschluss an (Decke?)
-- [ ] WLAN-Empfangstest mit Dev-Board im Edelstahlkamin
-- [ ] Kabelweg Gehäuse → Motor und Licht, vorhandene Steckverbinder, benötigte Länge
+- [x] Netzanschluss liegt im Aufnahmeraum (Abschnitt 5a)
+- [ ] WLAN-Empfangstest mit Dev-Board im geschlossenen Aufnahmeraum
+- [x] Kabelweg: Netz, Motor und Licht liegen bereits im Aufnahmeraum (Abschnitt 5a)
 - [ ] Leitungen im Anschlussraum durchmessen (Abschnitt 5a, Tabelle „Vorhandene Leitungen“)
 - [x] Spot-Leitung: 12 V DC, getestet (23.11.2026)
 - [ ] Lange Beleuchtungsleitung: AC oder DC, Trafo/Treiber in der Leuchte? (zuletzt klären)
@@ -583,7 +591,7 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 - [x] Bauraum 140 × 180 mm erfasst
 - [x] KiCad heruntergeladen
 - [x] Firmware-Plattform festgelegt: ESPHome
-- [x] Einbauort festgelegt: Steuergehäuse in der Kaminverkleidung
+- [x] Einbauort festgelegt: Aufnahmeraum der alten Steuerung, Trägerplatte, kein eigenes Gehäuse (23.11.2026)
 - [x] Bauform dokumentiert (Inselhaube, Foto)
 - [x] Bedienkonzept: smart über HA, Original-Display entfällt
 - [x] Bedienung ohne WLAN: BLE-Funktaster
