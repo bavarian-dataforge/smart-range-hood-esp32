@@ -570,8 +570,8 @@ Erste Fassung (22.11.2026, Regel 2 mm): L–N mindestens 2,45 mm, über CM3 nur 
 - [ ] Kabelweg Gehäuse → Motor und Licht, vorhandene Steckverbinder, benötigte Länge
 - [ ] Leitungen im Anschlussraum durchmessen (Abschnitt 5a, Tabelle „Vorhandene Leitungen“)
 - [x] Spot-Leitung: 12 V DC, getestet (23.11.2026)
-- [ ] Lange Beleuchtungsleitung: AC oder DC
-- [ ] Kaminofen: raumluftunabhängig zugelassen (DIBt)? Auflage für die Abluft-Haube beim Bezirksschornsteinfeger klären, Trafo/Treiber in der Leuchte? (zuletzt klären)
+- [ ] Lange Beleuchtungsleitung: AC oder DC, Trafo/Treiber in der Leuchte? (zuletzt klären)
+- [ ] Kaminofen: raumluftunabhängig zugelassen (DIBt)? Auflage für die Abluft-Haube beim Bezirksschornsteinfeger klären
 
 ## 11. Aufgabenliste
 
